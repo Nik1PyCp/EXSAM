@@ -43,3 +43,9 @@ def pe():
             connection.commit()
 
 
+cur.execute('SELECT rowid, name, price, number FROM products')
+connection.commit()
+res = cur.fetchall()
+pe()
+
+connection.close()
