@@ -2,7 +2,7 @@ import sqlite3
 
 
 
-p = input('Enter 1 for check\nEnter 2 for delete row\nEnter 3 for create\nEnter 4 for rename\nEnter 5 for new price\n')
+p = input('Enter 1 for check\nEnter 2 for delete row\nEnter 3 for create\nEnter 4 for rename\nEnter 5 for new price\nEnter 6 for new number')
 connection = sqlite3.connect('products.sl3', 5)
 cur = connection.cursor()
 #cur.execute('CREATE TABLE products (name TEXT, price TEXT, number TEXT)')
@@ -17,12 +17,14 @@ def pe():
       global r1
       global r2
       global r3
+      global r4
+      global num1
       global row
       global cur
       if p =='3':
             name = input('Enter name')
             price = int(input('Enter price'))
-            number = int(input('Enter number'))
+            number =input('Enter number')
             print('OK it is create')
             cur.execute(f'INSERT INTO products (name, price, number) VALUES ("{name}" , "{price}" , "{number}")')
             connection.commit()
@@ -38,9 +40,14 @@ def pe():
             cur.execute(f'UPDATE products SET name = "{name1}" WHERE rowid = {r2}')
             connection.commit()
       if p == '5':
-            price1 = int(input('Enter price'))
+            price1 = input('Enter price')
             r3 = int(input('Enter row'))
             cur.execute(f'UPDATE products SET price = "{price1}" WHERE rowid = "{r3}"')
+            connection.commit()
+      if p == '6':
+            num1 = input('Enter number')
+            r4 = int(input('Enter row'))
+            cur.execute(f'UPDATE products SET number = "{num1}" WHERE rowid = "{r4}"')
             connection.commit()
 
 
